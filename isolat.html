@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isolat</title>
+</head>
+
+<body>
+  <h1>Isolat window</h1>
+  <p>url</p>
+  <p style="color: red;" id="url"></p>
+  <br>
+  <button type="button" id="write-message-btn">Write message</button>
+  <br>
+  <p id="message"></p>
+  <script>
+    document.getElementById('url').innerText = window.location.href;
+  </script>
+  <script>
+
+    const wmb = document.querySelector('#write-message-btn');
+    const m = document.querySelector('#message');
+    const random = () => Math.random().toString(35).slice(2, 8);
+
+    wmb.addEventListener('click', () => {
+      localStorage.setItem(random(), new Date().toLocaleString());
+    });
+  
+    window.setInterval(() => {
+      m.textContent = `length = ${localStorage.length.toString()}`;  
+    }, 100);
+
+  </script>
+</body>
+
+</html>
